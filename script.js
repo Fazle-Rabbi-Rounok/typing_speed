@@ -25,8 +25,6 @@ const HARD_TEXTS = [
   "Distributed systems handle latency and failures.",
   "Machine learning models need regular tuning."
 ];
-
-
 const targetEl = document.getElementById('target');
 const inputEl = document.getElementById('input');
 const levelEl = document.getElementById('level');
@@ -53,13 +51,11 @@ let totalCorrect = 0;
 let sentenceComplete = false;
 let history = loadHistory();
 
-
 function buildPool(level) {
   if (level === 'Medium') return [...MEDIUM_TEXTS];
   if (level === 'Hard') return [...HARD_TEXTS];
   return [...EASY_TEXTS];
 }
-
 
 function nextSentence() {
   sentenceComplete = false;
@@ -69,8 +65,6 @@ function nextSentence() {
   renderTarget();            
   inputEl.focus();
 }
-
-
 
 function renderTarget() {
   const typed = inputEl.value || '';
@@ -95,13 +89,9 @@ function renderTarget() {
   targetEl.innerHTML = html;
 }
 
-
-
-
 function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
-
 
 inputEl.addEventListener('input', () => {
   const typed = inputEl.value;
@@ -118,7 +108,6 @@ inputEl.addEventListener('input', () => {
   }
 });
 
-
 function countCorrectChars(expected, typed) {
   let c = 0;
   for (let i = 0; i < Math.min(expected.length, typed.length); i++) {
@@ -126,7 +115,6 @@ function countCorrectChars(expected, typed) {
   }
   return c;
 }
-
 
 startBtn.addEventListener('click', () => {
   startCountdown(3);
@@ -176,7 +164,6 @@ function beginTest() {
   }, 1000);
 }
 
-
 function updateLiveStats(force) {
   const elapsedMs = Date.now() - startTime;
   if (elapsedMs < 500) return;
@@ -191,8 +178,6 @@ function updateLiveStats(force) {
   wpmEl.textContent = `WPM: ${wpm.toFixed(1)}`;
   accEl.textContent = `Accuracy: ${accuracy.toFixed(1)}%`;
 }
-
-
 function endTest() {
   clearInterval(timer);
   inputEl.disabled = true;
@@ -206,12 +191,10 @@ function endTest() {
   const finalTotalCorrect = totalCorrect + nowCorrect;
   const wpm = (finalTotalCorrect / 5) / minutes;
   const accuracy = finalTotalTyped > 0 ? (finalTotalCorrect * 100 / finalTotalTyped) : 100;
-
   
   resultEl.hidden = false;
   resultEl.innerHTML = `Time's Up! &nbsp; <strong>WPM:</strong> ${wpm.toFixed(1)} &nbsp; <strong>Accuracy:</strong> ${accuracy.toFixed(1)}%`;
 
-  
   const entry = {
     wpm: Number(wpm.toFixed(1)),
     accuracy: Number(accuracy.toFixed(1)),
@@ -222,7 +205,6 @@ function endTest() {
   history.push(entry);
   saveHistory();
 
-
   setTimeout(() => {
     startBtn.disabled = false;
     levelEl.disabled = false;
@@ -230,7 +212,6 @@ function endTest() {
   }, 300);
 
 }
-
 
 function loadHistory() {
   try {
