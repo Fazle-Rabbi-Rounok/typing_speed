@@ -128,7 +128,6 @@ textarea#input {
   color: #e6edf3;
 }
 
-/* result */
 .result {
   margin-top: 14px;
   padding: 12px;
@@ -137,7 +136,6 @@ textarea#input {
   color: var(--accent);
 }
 
-/* modal */
 .modal {
   position: fixed;
   inset: 0;
