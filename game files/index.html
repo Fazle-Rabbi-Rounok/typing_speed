@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Typing Speed Test — Web</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Highlight styles for typing test */
+      #target span.correct {
+        color: #4caf50;
+      } /* correct letters green */
+      #target span.wrong {
+        color: #f44336;
+      } /* wrong letters red */
+      #target span {
+        color: #ffffff;
+      } /* default/untouched letters white */
+
+      /* Optional: styling for target box */
+      #target {
+        font-family: monospace;
+        font-size: 20px;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <h1>Typing Speed Test</h1>
+      <p class="sub">
+        Test your typing speed and accuracy.
+      </p>
+
+      <div class="controls">
+        <label
+          >Level
+          <select id="level">
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+        </label>
+
+        <label
+          >Time (s)
+          <select id="time">
+            <option>30</option>
+            <option selected>60</option>
+            <option>90</option>
+          </select>
+        </label>
+
+        <button id="startBtn" class="primary">Start Test</button>
+        <button id="historyBtn" class="ghost">History</button>
+      </div>
+
+      <section class="display">
+        <div id="target" class="target" aria-live="polite"></div>
+        <textarea
+          id="input"
+          placeholder="Start test to type..."
+          rows="3"
+          disabled
+        ></textarea>
+      </section>
+
+      <div class="stats">
+        <div><strong id="timer">Time: --</strong></div>
+        <div><strong id="wpm">WPM: --</strong></div>
+        <div><strong id="acc">Accuracy: --</strong></div>
+      </div>
+
+      <div id="result" class="result" hidden></div>
+    </main>
+
+    <!-- History Modal -->
+    <div id="historyModal" class="modal" aria-hidden="true">
+      <div class="modalCard">
+        <header>
+          <h3>History</h3>
+          <button id="closeHistory" class="close">✕</button>
+        </header>
+        <div id="historyList" class="historyList"></div>
+        <footer>
+          <button id="clearHistory" class="ghost">Clear</button>
+        </footer>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
